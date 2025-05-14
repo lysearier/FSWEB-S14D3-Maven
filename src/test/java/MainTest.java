@@ -41,9 +41,9 @@ public class MainTest {
         holden = new Holden(4, "Holden");
         ford = new Ford(4, "Ford");
         carSkeleton = new CarSkeleton("Test", "test");
-        electricCar = new ElectricCar("Test", "test", 10, 5);
-        gasPoweredCar = new GasPoweredCar("Test", "test", 10, 4);
-        hybridCar = new HybridCar("Test", "test", 10, 5, 4);
+        electricCar = new ElectricCar(3.5, 50, "10", "5");
+        gasPoweredCar = new GasPoweredCar(1.9, 53, "10", "4");
+        hybridCar = new HybridCar(1.0, 22, 10, "5", "4");
     }
 
     @DisplayName("Car sınıf değişkenleri doğru access modifier değerlerine sahip mi ?")
@@ -69,32 +69,26 @@ public class MainTest {
 
     @DisplayName("Car startEngine metodu doğru çalışıyor mu ?")
     @Test
-    public void testStartEngineMethod() throws NoSuchFieldException {
-        PrintStream saveOut = System.out;
-        final ByteArrayOutputStream out = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(out));
-        assertEquals(car.startEngine(), "the car's engine is starting");
-        assertThat(out.toString(), containsString(car.getClass().getSimpleName()));
+    public void testStartEngineMethod() {
+        String result = car.startEngine();
+        assertEquals("Car: the car's engine is starting", result);
+        assertThat(result, containsString(car.getClass().getSimpleName()));
     }
 
     @DisplayName("Car accelerate metodu doğru çalışıyor mu ?")
     @Test
-    public void testAccelerate() throws NoSuchFieldException {
-        PrintStream saveOut = System.out;
-        final ByteArrayOutputStream out = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(out));
-        assertEquals(car.accelerate(), "the car is accelerating");
-        assertThat(out.toString(), containsString(car.getClass().getSimpleName()));
+    public void testAccelerate() {
+        String result = car.accelerate();
+        assertEquals("Car: the car is accelerating", result);
+        assertThat(result, containsString(car.getClass().getSimpleName()));
     }
 
     @DisplayName("Car brake metodu doğru çalışıyor mu ?")
     @Test
-    public void testBrake() throws NoSuchFieldException {
-        PrintStream saveOut = System.out;
-        final ByteArrayOutputStream out = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(out));
-        assertEquals(car.brake(), "the car is braking");
-        assertThat(out.toString(), containsString(car.getClass().getSimpleName()));
+    public void testBrake() {
+        String result = car.brake();
+        assertEquals("Car: the car is braking", result);
+        assertThat(result, containsString(car.getClass().getSimpleName()));
     }
 
     @DisplayName("Mitsubishi, Ford, Holden doğru sınıf tipinde mi ?")
@@ -146,7 +140,7 @@ public class MainTest {
         assertThat(hybridCar.getName(), instanceOf(String.class));
         assertThat(hybridCar.getDescription(), instanceOf(String.class));
         assertThat(hybridCar.getCylinders(), instanceOf(Integer.class));
-        assertThat(hybridCar.getAvgKmPerLitre(), instanceOf(Double.class))
+        assertThat(hybridCar.getAvgKmPerLitre(), instanceOf(Double.class));
         assertThat(hybridCar.getBatterySize(), instanceOf(Integer.class));
     }
 
